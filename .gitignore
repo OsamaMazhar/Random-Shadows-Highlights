@@ -1,0 +1,10 @@
+*
+!.gitignore
+!README.md
+!Samples/*
+!AlexNet.py
+!DiskAugmenter.py
+!main.py
+!OtherTransforms.py
+!RandomShadowsHighlights.py
+!train_model.py
