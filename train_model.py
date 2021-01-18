@@ -4,7 +4,6 @@
 # model saving code)
 
 import torch, time, copy, sys, os
-import matplotlib.pyplot as plt
 
 def train_model(output_path, model, dataloaders, \
             dataset_sizes, criterion, optimizer, \

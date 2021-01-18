@@ -52,12 +52,12 @@ if __name__=="__main__":
             'train': transforms.Compose([
                 # For CIFAR-10 and CIFAR100, either change the model or resize images to 64x64 (uncomment the transform below)
                 # transforms.Resize(64),
-                DiskAugmenter(local_mask=(120, 160), global_mask=(40, 80), augmenting_prob=i_p),
+                DiskAugmenter(local_mask=(120, 160), global_mask=(40, 80), augmenting_prob=0),
                 RandomShadows(p=i_p, high_ratio=(1,2), low_ratio=(0,1), \
                 left_low_ratio=(0.4,0.8), left_high_ratio=(0,0.3), right_low_ratio=(0.4,0.8),
                 right_high_ratio = (0,0.3)), ## high means from top of image, low means from top to bottom low
-                RandomGamma(gamma_p = i_p, gamma_ratio=(0, 1.5)),
-                RandomColorJitter(p = i_p, brightness_ratio=(0,2), contrast_ratio=(0,2), \
+                RandomGamma(gamma_p = 0, gamma_ratio=(0, 1.5)),
+                RandomColorJitter(p = 0, brightness_ratio=(0,2), contrast_ratio=(0,2), \
                             saturation_ratio=(0,2), hue_ratio=(-0.5,0.5)),
                 transforms.ToTensor(),
                 transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)),
@@ -108,15 +108,16 @@ if __name__=="__main__":
             dataloaders = {'train': train_loader, 'val': test_loader}
             dataset_sizes = {x: len(image_datasets[x]) for x in ['train', 'val']}
 
+        if args.dataset == "TinyImageNet":
+            classes = 200
+        elif args.dataset == "CIFAR100":
+            classes = 100
+        elif args.dataset == "CIFAR10":
+            classes = 10
+
         if args.model_name == "EfficientNet":
-            model_ft = EfficientNet.from_pretrained('efficientnet-b0', num_classes=200)
+            model_ft = EfficientNet.from_pretrained('efficientnet-b0', num_classes=classes)
         elif args.model_name == "AlexNet":
-            if args.dataset == "TinyImageNet":
-                classes = 200
-            elif args.dataset == "CIFAR100":
-                classes = 100
-            elif args.dataset == "CIFAR10":
-                classes = 10
             model_ft = alexnet(pretrained=True, out_classes=classes)
         else:
             print("Only \"EfficientNet\" or \"AlexNet\" models are supported.")
