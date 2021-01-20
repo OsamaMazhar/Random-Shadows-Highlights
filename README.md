@@ -27,11 +27,15 @@ from RandomShadowsHighlights import RandomShadows
 
 If you find this code useful for your research, please consider citing:
 
-    @article{mazhar2021rsh,
-    title={Random Shadows and Highlights: A new data augmentation method for extreme lighting conditions},
-    author={Osama Mazhar and Jens Kober},
-    journal={arXiv preprint arXiv:2101.05361},
-    year={2021}
+    @Misc{Mazhar2021arXiv,
+      author  = {Mazhar, Osama and Kober, Jens},
+      note    = {arXiv:2101.05361 [cs.CV]},
+      title   = {{Random Shadows and Highlights}: A New Data Augmentation Method for Extreme Lighting Conditions},
+      year    = {2021},
+      code    = {https://github.com/OsamaMazhar/Random-Shadows-Highlights},
+      file    = {https://arxiv.org/pdf/2101.05361.pdf},
+      project = {OpenDR},
+      url     = {https://arxiv.org/abs/2101.05361},
     }
 
 ### Requirements:
